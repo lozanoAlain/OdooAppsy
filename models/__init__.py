@@ -1,3 +1,8 @@
 # -*- coding: utf-8 -*-
 
-from . import models
+import user
+import psychologist
+import client
+import appointment
+import resource
+import clientResource

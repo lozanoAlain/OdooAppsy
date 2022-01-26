@@ -1,0 +1,201 @@
+<odoo>
+    <data>
+       
+        <!-- actions opening views on model Psychologist -->
+        <record model="ir.ui.view" id="psychologistview">
+            <field name="name">psychologistView</field>
+            <field name="model">appsy.psychologist</field>
+            <field name="arch" type="xml">
+                <tree string="psychologistlist">
+                    <field name="name"/>
+                    <field name="login"/>
+                    <field name="email"/>
+                    <field name="specialization"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="psychologistform">
+            <field name="name">psychologistform</field>
+            <field name="model">appsy.psychologist</field>
+            <field name="arch" type="xml">
+                
+                <form>
+                    <sheet>
+                        <h1>Psychologist</h1>
+                        <group>
+                            <field name="name"/>
+                            <field name="login"/>
+                            <field name="email"/>
+                            <field name="specialization"/>
+                        </group>
+                    </sheet> 
+                </form>
+            </field>
+        </record>
+    
+        <record model="ir.ui.view" id="appointmentview">
+            <field name="name">appointmentView</field>
+            <field name="model">appsy.appointment</field>
+            <field name="arch" type="xml">
+                <tree string="appointmentlist">
+                    <field name="date"/>
+                    <field name="diagnose"/>
+                    <field name="price"/>
+                    <field name="client_id"/>
+                    <field name="psychologist_id"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="appointmentform">
+            <field name="name">appointmentForm</field>
+            <field name="model">appsy.appointment</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="date"/>
+                            <field name="diagnose"/>
+                            <field name="price"/>
+                        </group>
+                        <notebook>
+                            <page String="Clients">
+                                <group>
+                                    <field name="client_id"/>
+                                </group>
+                            </page>
+                            <page String="Psychologist">
+                                <group>
+                                    <field name="psychologist_id"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    
+        <record model="ir.ui.view" id="resourceview">
+            <field name="name">resourceView</field>
+            <field name="model">appsy.resource</field>
+            <field name="arch" type="xml">
+                <tree string="resourcelist">
+                    <field name="dateAdded"/>
+                    <field name="link"/>
+                    <field name="tittle"/>
+                    <field name="psychologist_id"/>
+                    <field name="clientResourceIds"/>
+                </tree>
+            </field>
+        </record>
+    
+        <record model="ir.ui.view" id="resourceform">
+            <field name="name">resourceForm</field>
+            <field name="model">appsy.resource</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="dateAdded"/>
+                            <field name="link"/>
+                            <field name="tittle"/>
+                        </group>
+                        <group>
+                            <field name="psychologist_id"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    
+        <record model="ir.ui.view" id="clientview">
+            <field name="name">clientView</field>
+            <field name="model">appsy.client</field>
+            <field name="arch" type="xml">
+                <tree string="clientlist">
+                    <field name="dateStart"/>
+                    <field name="appointment_id"/>
+                </tree>
+            </field>
+        </record>
+    
+        <record model="ir.ui.view" id="clientform">
+            <field name="name">clientView</field>
+            <field name="model">appsy.client</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <h1>Clients</h1>
+                        <group>
+                            <field name="name"/>
+                            <field name="email"/>
+                            <field name="dateStart"/>
+                        </group>
+                        <notebook>
+                            <page String="Appointments">
+                                <field name="appointment_id"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    
+    
+        <!-- actions opening views on model client -->
+        <record model="ir.actions.act_window" id="action_list_client">
+            <field name="name">Clients</field>
+            <field name="res_model">appsy.client</field>
+            <field name="view_mode">tree,form</field>
+            <!-- <field name="help" type="html"><p class="oe_view_nocontent_create">Create the first client</p></field> -->
+        </record>
+
+        <!-- actions opening views on model psychologist -->    
+        <record model="ir.actions.act_window" id="action_list_psychologist">
+            <field name="name">Psychologist</field>
+            <field name="res_model">appsy.psychologist</field>
+            <field name="view_mode">tree,form</field>
+            <!-- <field name="help" type="html"><p class="oe_view_nocontent_create">Create the first psychologist</p></field> -->
+        </record>
+        <!-- actions opening views on model appointment -->    
+        <record model="ir.actions.act_window" id="action_list_appointment">
+            <field name="name">Appointment</field>
+            <field name="res_model">appsy.appointment</field>
+            <field name="view_mode">tree,form</field>
+            <!--<field name="help" type="html"><p class="oe_view_nocontent_create">Create the first appointment</p></field> -->
+        </record>   
+        <!-- actions opening views on model resource -->
+        <record model="ir.actions.act_window" id="action_list_resource">
+            <field name="name">Resource</field>
+            <field name="res_model">appsy.resource</field>
+            <field name="view_mode">tree,form</field>
+            <!--<field name="help" type="html"><p class="oe_view_nocontent_create">Create the first resource</p></field> -->
+        </record>
+        <!-- server action to the one above -->
+        <!--
+        <record model="ir.actions.server" id="appsy.action_server">
+          <field name="name">appsy server</field>
+          <field name="model_id" ref="model_appsy_appsy"/>
+          <field name="code">
+            action = {
+              "type": "ir.actions.act_window",
+              "view_mode": "tree,form",
+              "res_model": self._name,
+            }
+          </field>
+        </record>
+        -->
+        <!-- Top menu item -->
+        <menuitem name="appsy" id="main_appsy_menu"/>
+        <!-- menu categories -->
+        <menuitem name="appsy" id="appsy_menu" parent="main_appsy_menu"/>
+        <!-- actions -->
+        <menuitem name="psychologist" id="psychologist_list" parent="appsy_menu"
+                  action="action_list_psychologist"/> 
+        <menuitem name="appointment" id="appointment_list" parent="appsy_menu"
+                  action="action_list_appointment"/> 
+        <menuitem name="resource" id="resource_list" parent="appsy_menu"
+                  action="action_list_resource"/> 
+        <menuitem name="client" id="client_list" parent="appsy_menu"
+                  action="action_list_client"/>      
+    </data>
+</odoo>
