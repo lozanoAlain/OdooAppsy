@@ -17,8 +17,7 @@
         <record model="ir.ui.view" id="psychologistform">
             <field name="name">psychologistform</field>
             <field name="model">appsy.psychologist</field>
-            <field name="arch" type="xml">
-                
+            <field name="arch" type="xml">               
                 <form>
                     <sheet>
                         <h1>Psychologist</h1>
@@ -37,6 +36,7 @@
             <field name="name">appointmentView</field>
             <field name="model">appsy.appointment</field>
             <field name="arch" type="xml">
+                
                 <tree string="appointmentlist">
                     <field name="date"/>
                     <field name="diagnose"/>
@@ -52,6 +52,7 @@
             <field name="arch" type="xml">
                 <form>
                     <sheet>
+                         <h1>Appointment</h1>
                         <group>
                             <field name="date"/>
                             <field name="diagnose"/>
@@ -73,11 +74,33 @@
                 </form>
             </field>
         </record>
+        <record model="ir.ui.view" id="appointment_search_view">
+            <field name="name">appointment search module</field>
+            <field name="model">appsy.appointment</field>
+            <field name="arch" type="xml">
+                <search String="Search by diagnose">
+                    <field name="diagnose"/>
+                </search>
+            </field>
+        </record>
     
         <record model="ir.ui.view" id="resourceview">
             <field name="name">resourceView</field>
             <field name="model">appsy.resource</field>
-            <field name="arch" type="xml">
+            <field name="arch" type="xml">             
+                <tree string="resourcelist">
+                    <field name="dateAdded"/>
+                    <field name="link"/>
+                    <field name="tittle"/>
+                    <field name="psychologist_id"/>
+                    <field name="clientResourceIds"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="resourceview">
+            <field name="name">resourceView</field>
+            <field name="model">appsy.resource</field>
+            <field name="arch" type="xml">             
                 <tree string="resourcelist">
                     <field name="dateAdded"/>
                     <field name="link"/>
@@ -88,22 +111,13 @@
             </field>
         </record>
     
-        <record model="ir.ui.view" id="resourceform">
-            <field name="name">resourceForm</field>
+        <record model="ir.ui.view" id="resource_search_view">
+            <field name="name">resource search module</field>
             <field name="model">appsy.resource</field>
             <field name="arch" type="xml">
-                <form>
-                    <sheet>
-                        <group>
-                            <field name="dateAdded"/>
-                            <field name="link"/>
-                            <field name="tittle"/>
-                        </group>
-                        <group>
-                            <field name="psychologist_id"/>
-                        </group>
-                    </sheet>
-                </form>
+                <search String="Search by tittle:">
+                    <field name="tittle"/>
+                </search>
             </field>
         </record>
     

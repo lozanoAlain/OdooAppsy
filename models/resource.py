@@ -25,7 +25,16 @@ class resource(models.Model):
     def _check_linkNotNull(self):
         for record in self:
             if (not (record.link and record.link.strip())):
-                raise ValidationError("The link cant be null")
+                raise ValidationError("The link cant be null")    
+    @api.onchange('tittle')
+    def _verify_pricechar(self):
+        if len(str(self.tittle)) > 255:
+            return {
+                'warning': {
+                'title': "Incorrect tittle",
+                'message': "The tittle is too long",
+            },
+        }
 #     name = fields.Char()
 #     value = fields.Integer()
 #     value2 = fields.Float(compute="_value_pc", store=True)
