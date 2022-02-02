@@ -2,14 +2,17 @@
 # To change this template file, choose Tools | Templates
 # and open the template in the editor.
 
-from odoo import models, fields, api
+from odoo import api
+from odoo import fields
+from odoo import models
 
 class clientResource(models.Model):
-    _name = 'appsy.clientResource'
+    _name = 'appsy.clientresource'
 
     typeDiagnose = fields.Char()
-    client = fields.Many2one('appsy.client', string ="Client")
-    resource = fields.Many2one('appsy.resource', string="Resource")
+    clients_id = fields.Many2one('appsy.client', string="Client")
+    resource_id = fields.Many2one('appsy.resource', string="Resource")
+    
 #     value = fields.Integer()
 #     value2 = fields.Float(compute="_value_pc", store=True)
 #     description = fields.Text()

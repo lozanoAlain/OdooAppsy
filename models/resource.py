@@ -2,16 +2,39 @@
 # To change this template file, choose Tools | Templates
 # and open the template in the editor.
 
-from odoo import models, fields, api
+from odoo import api
+from odoo import fields
+from odoo import models
+from odoo.exceptions import ValidationError
 
 class resource(models.Model):
     _name = 'appsy.resource'
     
     dateAdded = fields.Date()
     link = fields.Char()
-    tittle = fields.Chart()
-    psychologist = fields.Many2one('appsy.psychologist', string="Psychologist")
-    clientResourceIds = fields.One2many('appsy.clientResource','resource', string="Resources")
+    tittle = fields.Char()
+    psychologist_id = fields.Many2one('appsy.psychologist', string="Psychologist")
+    clientResourceIds = fields.One2many('appsy.clientresource', 'resource_id', string="Resources")
+    
+    @api.constrains('tittle')
+    def _check_tittleNotNull(self):
+        for record in self:
+            if (not (record.tittle and record.tittle.strip())):
+                raise ValidationError("The tittle cant be null")
+    @api.constrains('link')
+    def _check_linkNotNull(self):
+        for record in self:
+            if (not (record.link and record.link.strip())):
+                raise ValidationError("The link cant be null")    
+    @api.onchange('tittle')
+    def _verify_pricechar(self):
+        if len(str(self.tittle)) > 255:
+            return {
+                'warning': {
+                'title': "Incorrect tittle",
+                'message': "The tittle is too long",
+            },
+        }
 #     name = fields.Char()
 #     value = fields.Integer()
 #     value2 = fields.Float(compute="_value_pc", store=True)
