@@ -1,2 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_appsy_appsy,appsy.appsy,model_appsy_appsy,,1,0,0,0
+access_resources_admin,Admin resources,model_appsy_resource,group_admin,1,1,1,1
+access_resources_read,All user resources,model_appsy_resource,,1,0,0,0
