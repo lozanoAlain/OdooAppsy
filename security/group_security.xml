@@ -1,0 +1,12 @@
+<odoo>
+    <data>
+        <record id="group_admin" model="res.groups">
+            <field name="name">Appsy / Admin</field>
+        </record>
+         <record id="group_read" model="res.groups">
+            <field name="name">Appsy / Only read</field>
+        </record>
+        
+    </data>
+
+</odoo>
