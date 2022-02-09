@@ -4,9 +4,12 @@ from odoo import api
 from odoo import fields
 from odoo import models
 
-class user(models.Model):
-    _inherit = 'res.users'
+class userAppsy(models.Model):
+    #_inherit = 'res.users'
     _name = 'appsy.users'
+    login = fields.Char()
+    name = fields.Char()
+    email = fields.Char()
     user_status = fields.Selection([
         ('0', 'ACTIVE'),
         ('1', 'INACTIVE'),

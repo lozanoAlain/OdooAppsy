@@ -11,6 +11,7 @@
                     <field name="login"/>
                     <field name="email"/>
                     <field name="specialization"/>
+                    <field name="appointment_id"/>
                 </tree>
             </field>
         </record>
@@ -52,7 +53,7 @@
             <field name="arch" type="xml">
                 <form>
                     <sheet>
-                         <h1>Appointment</h1>
+                        <h1>Appointment</h1>
                         <group>
                             <field name="date"/>
                             <field name="diagnose"/>
@@ -126,6 +127,9 @@
             <field name="model">appsy.client</field>
             <field name="arch" type="xml">
                 <tree string="clientlist">
+                    <field name="name"/>
+                    <field name="login"/>
+                    <field name="email"/>
                     <field name="dateStart"/>
                     <field name="appointment_id"/>
                 </tree>
@@ -141,6 +145,7 @@
                         <h1>Clients</h1>
                         <group>
                             <field name="name"/>
+                            <field name="login"/>
                             <field name="email"/>
                             <field name="dateStart"/>
                         </group>

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import user
+import userAppsy
 import psychologist
 import client
 import appointment
